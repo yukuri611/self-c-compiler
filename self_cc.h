@@ -9,7 +9,7 @@
 // tokenize.c
 //
 
-// TokenF
+// Token
 typedef enum {
   TK_RESERVED, // Keywords or punctuators
   TK_IDENT,    // Identifiers
@@ -68,6 +68,7 @@ typedef enum {
   ND_IF,       // "if"
   ND_WHILE,     // "while"
   ND_FOR,       // "for"
+  ND_BLOCK,     // Block statement {...}
   ND_EXPR_STMT, // Expression statement
   ND_VAR,       // Variable
   ND_NUM,       // Integer
@@ -88,6 +89,9 @@ struct Node {
   Node *els;
   Node *init;    // Initialization expression
   Node *inc;     // Increment expression
+
+  // Block
+  Node *body;    
 
   char name;     // Used if kind == ND_LVAR
   Var *var;      // Used if kind == ND_VAR
