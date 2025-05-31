@@ -1,7 +1,11 @@
 CFLAGS=-std=c11 -g -static
+SRCS=$(wildcard *.c)
+OBJS=$(SRCS:.c=.o)
 
-self_cc: main.c
-	$(CC) -o $@ $? $(LDFLAGS)
+self_cc: $(OBJS)
+	$(CC) -o $@ $(OBJS) $(LDFLAGS)
+
+$(OBJS): self_cc.h
 
 test:self_cc
 	./test.sh
