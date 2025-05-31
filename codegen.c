@@ -1,8 +1,14 @@
 #include "self_cc.h"
 
 void gen(Node *node) {
-  if (node->kind == ND_NUM) {
+  switch (node->kind) {
+  case ND_NUM:
     printf("  push %d\n", node->val);
+    return;
+  case ND_RETURN:
+    gen(node->lhs);
+    printf("  pop rax\n");
+    printf("  ret\n");
     return;
   }
 
@@ -60,6 +66,6 @@ void codegen(Node *node) {
     gen(n);
     printf("  pop rax\n");
   }
-  
+
   printf("  ret\n");
 }
