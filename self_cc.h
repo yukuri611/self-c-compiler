@@ -66,6 +66,8 @@ typedef enum {
   ND_ASSIGN,    // =
   ND_RETURN,    // "return"
   ND_IF,       // "if"
+  ND_WHILE,     // "while"
+  ND_FOR,       // "for"
   ND_EXPR_STMT, // Expression statement
   ND_VAR,       // Variable
   ND_NUM,       // Integer
@@ -79,11 +81,13 @@ struct Node {
   Node *next;    // Next node
   Node *lhs;     // Left-hand side
   Node *rhs;     // Right-hand side
-  
-  // "if" statement
+
+  // "if", "while", "for" statement
   Node *cond;
   Node *then;
   Node *els;
+  Node *init;    // Initialization expression
+  Node *inc;     // Increment expression
 
   char name;     // Used if kind == ND_LVAR
   Var *var;      // Used if kind == ND_VAR
