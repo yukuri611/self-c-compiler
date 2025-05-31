@@ -1,0 +1,6 @@
+*~
+*.o
+*.s
+tmp*
+a.out
+self_cc
